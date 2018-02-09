@@ -290,6 +290,8 @@ bool AP_Proximity_uSharpPatch::get_usharp_can_data(Custom_Can_Frame* frame)
         }
     }
 
+	hal.console->printf("\nCAN Radar Read:");
+
     // read data by frame
     for (uint8_t i = 1; i < RADAR_MATRIX_ROWS; i++) {
 
@@ -302,6 +304,7 @@ bool AP_Proximity_uSharpPatch::get_usharp_can_data(Custom_Can_Frame* frame)
             case ANS_FRONT_F1:
                 recv_flag |= 0x0001;
                 copy_can_frame(Radar_Matrix[RML_RD1_F1], frame);
+                hal.console->printf("F ");
                 break;
 
             case ANS_FRONT_F2:
@@ -312,6 +315,7 @@ bool AP_Proximity_uSharpPatch::get_usharp_can_data(Custom_Can_Frame* frame)
             case ANS_RIGHT_FRONT_F1:
                 recv_flag |= 0x0004;
                 copy_can_frame(Radar_Matrix[RML_RD2_F1], frame);
+                hal.console->printf("RF ");
                 break;
 
             case ANS_RIGHT_FRONT_F2:
@@ -322,6 +326,7 @@ bool AP_Proximity_uSharpPatch::get_usharp_can_data(Custom_Can_Frame* frame)
             case ANS_RIGHT_F1:
                 recv_flag |= 0x0010;
                 copy_can_frame(Radar_Matrix[RML_RD3_F1], frame);
+                hal.console->printf("R ");
                 break;
 
             case ANS_RIGHT_F2:
@@ -332,6 +337,7 @@ bool AP_Proximity_uSharpPatch::get_usharp_can_data(Custom_Can_Frame* frame)
             case ANS_RIGHT_BACK_F1:
                 recv_flag |= 0x0040;
                 copy_can_frame(Radar_Matrix[RML_RD4_F1], frame);
+                hal.console->printf("RB ");
                 break;
 
             case ANS_RIGHT_BACK_F2:
@@ -342,6 +348,7 @@ bool AP_Proximity_uSharpPatch::get_usharp_can_data(Custom_Can_Frame* frame)
             case ANS_BACK_F1:
                 recv_flag |= 0x0100;
                 copy_can_frame(Radar_Matrix[RML_RD5_F1], frame);
+                hal.console->printf("B ");
                 break;
 
             case ANS_BACK_F2:
@@ -352,6 +359,7 @@ bool AP_Proximity_uSharpPatch::get_usharp_can_data(Custom_Can_Frame* frame)
             case ANS_LEFT_BACK_F1:
                 recv_flag |= 0x0400;
                 copy_can_frame(Radar_Matrix[RML_RD6_F1], frame);
+                hal.console->printf("LB ");
                 break;
 
             case ANS_LEFT_BACK_F2:
@@ -362,6 +370,7 @@ bool AP_Proximity_uSharpPatch::get_usharp_can_data(Custom_Can_Frame* frame)
             case ANS_LEFT_F1:
                 recv_flag |= 0x1000;
                 copy_can_frame(Radar_Matrix[RML_RD7_F1], frame);
+                hal.console->printf("L ");
                 break;
 
             case ANS_LEFT_F2:
@@ -372,6 +381,7 @@ bool AP_Proximity_uSharpPatch::get_usharp_can_data(Custom_Can_Frame* frame)
             case ANS_LEFT_FRONT_F1:
                 recv_flag |= 0x4000;
                 copy_can_frame(Radar_Matrix[RML_RD8_F1], frame);
+                hal.console->printf("LF ");
                 break;
 
             case ANS_LEFT_FRONT_F2:
@@ -380,6 +390,8 @@ bool AP_Proximity_uSharpPatch::get_usharp_can_data(Custom_Can_Frame* frame)
                 break;
         }
     }
+
+	hal.console->printf(" recv_flag: %d\n",recv_flag);
 
     return recv_flag != 0;
 }

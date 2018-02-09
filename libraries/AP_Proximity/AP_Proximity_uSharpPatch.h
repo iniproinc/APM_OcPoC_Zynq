@@ -30,7 +30,7 @@
  * interpeted _distance[] data from all radars reporting
  * a raw range greater than 0.
  */
-#define RADAR_DISTANCE_DEBUG    0
+#define RADAR_DISTANCE_DEBUG    1
 
 
 /* can hub command */
